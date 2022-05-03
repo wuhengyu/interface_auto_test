@@ -62,7 +62,9 @@ class TestApi:
             is_pass = False
             logger.info('用例断言失败')
         finally:
-            case_data.
+            case_data.updateResults(res_data, is_pass, str(case['id']))
+            assert is_pass
+        return is_pass
 
     def set_relation(self, relation, res_data):
         try:
@@ -83,11 +85,10 @@ class TestApi:
         if res_data:
             replace_dict = {}
             for i in res_data:
-                data_tmp = getattr(DynamicParam, str{i}, "None")
+                data_tmp = getattr(DynamicParam, str(i), "None")
                 replace_dict.update({str(i):data_tmp})
             data = json.loads(Base.relace(data, replace_dict))
         return data
-
 
 if __name__ == '__main__':
     pytest.main(['-s', '-v', 'test_run.py'])
