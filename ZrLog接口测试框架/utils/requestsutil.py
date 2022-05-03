@@ -5,7 +5,7 @@
 # @License : (C)Copyright Walter
 # @Desc    :
 import requests
-from ZrLog接口测试框架.log.logutil import logger
+from ZrLog接口测试框架.utils.logutil import logger
 
 class RequestSend:
     def api_run(self, url, method, data=None, headers=None, cookies=None):

@@ -8,7 +8,7 @@
 import pymysql
 
 from ZrLog接口测试框架.config.setting import DB_CONFIG
-from ZrLog接口测试框架.log.logutil import logger
+from ZrLog接口测试框架.utils.logutil import logger
 
 class MysqlUtil:
     def __init__(self):

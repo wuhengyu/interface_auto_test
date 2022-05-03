@@ -35,7 +35,7 @@ def get_report_path():
 def get_conf_path():
     return _conf_path
 
-class DynamicOaram:
+class DynamicParam:
     pass
 
 if __name__ == '__main__':
