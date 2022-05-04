@@ -15,7 +15,9 @@ from ZrLog接口测试框架.utils.readmysql import RdTestcase
 
 attribute = DynamicParam()
 case_data = RdTestcase()
-case_list = case_data.is_run_data('zrlog')
+case_list = case_data.is_run_data('zrlog', '登录模块')
+case_list2 = case_data.is_run_data('zrlog', '登录模块')[0]
+print(case_list2)
 current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 class TestApi:
@@ -25,15 +27,22 @@ class TestApi:
     def teardown_class(self):
         logger.info(f"执行用例完成，结束时间为{current_time}")
 
-    @pytest.mark.parametrize('case', case_list)
+    @pytest.mark.parametrize('case', [case_list2])
     def test_run(self, case):
         res_data = None
+
         url = case_data.loadConfKey('zrlog', 'url_api')['value'] + case['url']
+        # url = None
+        # for _ in case_list2:
+        #     url = case_data.loadConfKey('zrlog', 'url_api')['value']
+        #     api_url = _['url']
+        #     url = url + api_url
+        # url = url[0]
 
         method = case['method']
         headers = eval(case['headers'])
         cookies = eval(case['cookies'])
-        data = eval(case['data'])
+        data = eval(case['request_body'])
         relation = str(case['relation'])
         case_name = case['title']
         headers = self.correlation(headers)
