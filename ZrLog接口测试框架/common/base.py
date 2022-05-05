@@ -25,7 +25,7 @@ def parse_relation(var, resdata):
     else:
         resdata = resdata.get(var[0])
         del var[0]
-        return parse_relation((var, resdata))
+    return parse_relation(var, resdata)
 
 if __name__ == '__main__':
     ori_data = {"admin-token": "${token}"}

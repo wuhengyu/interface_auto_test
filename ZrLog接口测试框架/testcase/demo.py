@@ -31,3 +31,6 @@ case_list2 = case_data.is_run_data('zrlog', '登录模块')
 for _ in case_list2:
     method = _['method']
     print(method)
+
+if 0 == 0:
+    print('1111')

@@ -16,7 +16,7 @@ from ZrLog接口测试框架.utils.readmysql import RdTestcase
 attribute = DynamicParam()
 case_data = RdTestcase()
 case_list = case_data.is_run_data('zrlog', '登录模块')
-case_list2 = case_data.is_run_data('zrlog', '登录模块')[0]
+case_list2 = case_data.is_run_data('zrlog', '登录模块')[5]
 print(case_list2)
 current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
@@ -64,7 +64,7 @@ class TestApi:
     def assert_respoes(self, case, res_data):
         is_pass = False
         try:
-            assert int(res_data['body']['error'])==int(case['expected_cade'])
+            assert int(res_data['body']['error']) == int(case['expected_code'])
             logger.info('用例断言成功')
             is_pass = True
         except:
