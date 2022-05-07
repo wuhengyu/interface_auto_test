@@ -34,3 +34,35 @@ for _ in case_list2:
 
 if 0 == 0:
     print('1111')
+
+dic={'abc':123,'aaa':333,'wer':334}
+def text_dic(**dd):
+    for a,b in dd.items():# a 代表键 ，b代表值
+        print(a,b)
+    for xin in dd.items():# a 代表键 ，b代表值
+        print(list(xin))
+        print(tuple(xin))
+    for xin in dd.values():# a 代表键 ，b代表值
+        print(xin)
+    for xin in dd.keys():# a 代表键 ，b代表值
+        print(xin)
+text_dic(**dic)
+
+
+aaa = '{"userName": "admin","password": 123456,"https": False,"key": 1598188173501}'
+bbb = '{"userName": "admin","password": 123456,"https": "False","key": 1598188173501}'
+
+print(eval(aaa))
+print(json.loads(bbb))
+print(json.loads(json.dumps(aaa)))
+print(json.dumps(aaa))
+
+# ccc = {"userName": "admin","password": 123456,"https": False,"key": 1598188173501}
+# print(type(ccc))
+# print(eval(ccc))
+
+try:
+    assert 1 == 1
+    print('222')
+except:
+    print('111')

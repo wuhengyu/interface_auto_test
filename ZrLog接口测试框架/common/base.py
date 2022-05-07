@@ -20,6 +20,8 @@ def relace(ori_data, reolace_data):
     return s.safe_substitute(reolace_data)
 
 def parse_relation(var, resdata):
+    # print('var:', var)
+    # print('resdata:', resdata)
     if not var:
         return resdata
     else:
@@ -27,7 +29,10 @@ def parse_relation(var, resdata):
         del var[0]
     return parse_relation(var, resdata)
 
-if __name__ == '__main__':
-    ori_data = {"admin-token": "${token}"}
-    replace_data = {'token': 'x015k878'}
-    print(ori_data, replace_data)
+# if __name__ == '__main__':
+#     ori_data = {"admin-token": "${token}"}
+#     replace_data = {'token': 'x015k878'}
+#     print(ori_data, replace_data)
+
+aa = [1,2,3,4,5,6]
+print(aa[0:6])

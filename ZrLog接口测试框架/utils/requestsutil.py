@@ -11,7 +11,7 @@ class RequestSend:
     def api_run(self, url, method, data=None, headers=None, cookies=None):
         res = None
         logger.info('请求的url为{}，类型为{}'.format(url, type(url)))
-        logger.info('method{}，类型为{}'.format(method, type(method)))
+        logger.info('method为{}，类型为{}'.format(method, type(method)))
         logger.info('请求的data为{}，类型为{}'.format(data, type(data)))
         logger.info('请求的headers为{}，类型为{}'.format(headers, type(headers)))
         logger.info('请求的cookies为{}，类型为{}'.format(cookies, type(cookies)))
@@ -36,11 +36,3 @@ class RequestSend:
 
     def send(self, url, method, **kwargs):
         return self.api_run(url=url, method=method, **kwargs)
-
-
-if __name__ == '__main__':
-    url = "http://127.0.0.1/zrlog/api/admin/login"
-    data = {"username": "admin", "password": 123456, "https": False, "key": 160679294688}
-    method = "post"
-    headers = {"Content-Type": "application/json"}
-    print(RequestSend.send(url=url, method=method, headers=headers, data=data))
