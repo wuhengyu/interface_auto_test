@@ -16,6 +16,8 @@ case_data = RdTestcase()
 case_login_in = case_data.is_run_data('zrlog', '登录模块')[5:6]
 case_article = case_data.is_run_data('zrlog', '文章管理模块')[0:1]
 case_update = case_data.is_run_data('zrlog', '文章管理模块')[1:2]
+case_delete = case_data.is_run_data('zrlog', '文章管理模块')[2:3]
+case_select = case_data.is_run_data('zrlog', '文章管理模块')[3:4]
 current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 
@@ -87,6 +89,54 @@ class TestApi:
             data = eval(data)
             data['logId'] = str(logid)
             data['alias'] = str(alias)
+            case_name = article['title']
+            cookies = RdTestcase().selectCookies('admin-token')
+            try:
+                logger.info('正在执行{}用例'.format(case_name))
+                test_update_data = RequestSend().send(url, method, data=data, headers=headers, cookies=cookies)
+                logger.info("用例执行成功，请求结果为{}".format(test_update_data))
+            except:
+                logger.info("用例执行失败，请查看日志查找原因")
+                assert False
+            self.assert_response(article, test_update_data)
+
+    @pytest.mark.parametrize('case_delete', [case_delete])
+    def test_delete(self, case_delete):
+        selectID = case_data.selectID().values()
+        selectID = list(selectID)
+        deleteID = selectID[0]
+        for article in case_delete:
+            url = case_data.loadConfKey('zrlog', 'url_api')['value']
+            api_url = article['url']
+            url = url + api_url
+            method = article['method']
+            headers = eval(article['headers'])
+            data = article['request_body']
+            data = eval(data)
+            case_name = article['title']
+            cookies = RdTestcase().selectCookies('admin-token')
+            try:
+                logger.info('正在执行{}用例'.format(case_name))
+                test_delete_data = RequestSend().send(url, method, data=data, headers=headers, cookies=cookies)
+                logger.info("用例执行成功，请求结果为{}".format(test_delete_data))
+            except:
+                logger.info("用例执行失败，请查看日志查找原因")
+                assert False
+            self.assert_response(article, test_delete_data)
+
+    @pytest.mark.parametrize('case_select', [case_select])
+    def test_select(self, case_select):
+        selectID = case_data.selectID().values()
+        selectID = list(selectID)
+        maxID = selectID[0]
+        for article in case_select:
+            url = case_data.loadConfKey('zrlog', 'url_api')['value']
+            api_url = article['url']
+            url = url + api_url
+            method = article['method']
+            headers = eval(article['headers'])
+            data = eval(article['request_body'])
+            data['size'] = str(maxID)
             case_name = article['title']
             cookies = RdTestcase().selectCookies('admin-token')
             try:

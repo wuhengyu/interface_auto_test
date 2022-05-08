@@ -21,3 +21,6 @@ print(type(ggg))
 
 sss = '{"keywords": "","rubbish": True, "title": "测试112233","typeId": 1,"version": 10,"digest": "<p>测试</p>", "thumbnail": "","markdown": "测试", "content": "<p>测试</p>\\n"}'
 print(eval(sss))
+
+a = [1, 2, 3, 4]
+print(a[2])
