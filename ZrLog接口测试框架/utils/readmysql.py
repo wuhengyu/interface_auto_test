@@ -27,17 +27,39 @@ class RdTestcase:
         results = mysql.get_fetchone(sql)
         return results
 
+    def updateCookies(self, cookies_name, cookies_values):
+        current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        cookies_name = cookies_name[0]
+        cookies_values = cookies_values[0]
+        sql = f"insert into `test_cookies` (`cookies_name`, `admin-token`, `times`) values('{cookies_name}', '{cookies_values}', '{current_time}')"
+        cookies = mysql.sql_execute(sql)
+        logger.info(sql)
+        return cookies
+
+    def selectCookies(self, cookies_name):
+        sql = f"select `admin-token` from `test_cookies` where cookies_name=\'{cookies_name}\'"
+        cookies = mysql.get_fetchone(sql)
+        return cookies
+
     def updateResults(self, response, is_pass, case_id):
         current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         sql = f"insert into `test_result_record` (case_id, times, response, result) values('{case_id}', '{current_time}', '{json.dumps(response, ensure_ascii=False)}','{is_pass}')"
         rows = mysql.sql_execute(sql)
-        logger.debug(sql)
         return rows
+
+    def createID(self, case_id, logId, alias):
+        sql = f"insert into `test_create` (case_id, logId, alias) values('{case_id}', '{logId}','{alias}')"
+        rows = mysql.sql_execute(sql)
+        return rows
+
+    def selectID(self):
+        sql = f"select max(`logId`) from `test_create`"
+        selectID = mysql.get_fetchone(sql)
+        logger.info(sql)
+        return selectID
+
 if __name__ == '__main__':
     test = RdTestcase()
-    res = test.updateResults({
-        'code': 200,
-        'cody': {'error': 1, 'message': '用户名和密码不能为空'},
-        'cookies': {}
-    }, 'True', '4565')
+    res = test.updateCookies('111', '222')
+    # res = test.selectCookies('admin-token')
     print(res)

@@ -33,6 +33,3 @@ def parse_relation(var, resdata):
 #     ori_data = {"admin-token": "${token}"}
 #     replace_data = {'token': 'x015k878'}
 #     print(ori_data, replace_data)
-
-aa = [1,2,3,4,5,6]
-print(aa[0:6])

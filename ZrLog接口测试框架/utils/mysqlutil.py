@@ -4,6 +4,7 @@
 # @File    : mysqlutil.py
 # @License : (C)Copyright Walter
 # @Desc    :
+import logging
 
 import pymysql
 
@@ -42,6 +43,6 @@ class MysqlUtil:
 
 if __name__ == '__main__':
     mysql = MysqlUtil()
-    res = mysql.get_fetchall('select * from test_case_list')
+    res = mysql.sql_execute("insert into `test_cookies` (times, cookies_name, cookies_values) values('2022-05-08 12:57:52', '1', '2')")
     print(res)
 
