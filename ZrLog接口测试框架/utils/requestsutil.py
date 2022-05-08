@@ -30,7 +30,7 @@ class RequestSend:
                 res = session.post(url, json=data, headers=headers, cookies=cookies)
                 logger.info(res.url)
             elif headers == {"Content-Type": "application/x-www-form-urlencoded"}:
-                res = session.post(url, data=data, headers=headers, cookies=cookies)
+                res = session.post(url, params=data, headers=headers, cookies=cookies)
         self.dict1 = dict()
         try:
             body = res.json()

@@ -111,8 +111,8 @@ class TestApi:
             url = url + api_url
             method = article['method']
             headers = eval(article['headers'])
-            data = article['request_body']
-            data = eval(data)
+            data = eval(article['request_body'])
+            data['id'] = str(deleteID)
             case_name = article['title']
             cookies = RdTestcase().selectCookies('admin-token')
             try:

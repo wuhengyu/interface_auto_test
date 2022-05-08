@@ -24,3 +24,11 @@ print(eval(sss))
 
 a = [1, 2, 3, 4]
 print(a[2])
+
+import requests
+
+data = {"id":"111"}
+url = "https://www.baidu.com/"
+headers = {'Content-Type': 'application/json'}
+res = requests.post(url=url, params=data, headers=headers)
+print(res.url)
