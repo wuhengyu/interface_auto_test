@@ -7,6 +7,7 @@
 import json
 
 import requests
+
 from ZrLog接口测试框架.utils.logutil import logger
 from ZrLog接口测试框架.utils.readmysql import RdTestcase
 
@@ -24,11 +25,11 @@ class RequestSend:
         session = requests.session()
         if method == 'get':
             res = session.get(url, params=data, headers=headers, cookies=cookies)
-            logger.info(res.url)
+            # logger.info(res.url)
         elif method == 'post':
             if headers == {"Content-Type": "application/json"}:
                 res = session.post(url, json=data, headers=headers, cookies=cookies)
-                logger.info(res.url)
+                # logger.info(res.url)
             elif headers == {"Content-Type": "application/x-www-form-urlencoded"}:
                 res = session.post(url, params=data, headers=headers, cookies=cookies)
         self.dict1 = dict()

@@ -15,7 +15,7 @@ STREAM = True
 
 class LogUtil:
     def __init__(self):
-        self.logger = logging.getLogger("自动化测试")
+        self.logger = logging.getLogger("Walter Wu的自动化")
         self.logger.setLevel(logging.DEBUG)
 
         if not self.logger.handlers:

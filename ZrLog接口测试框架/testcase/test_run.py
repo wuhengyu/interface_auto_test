@@ -165,4 +165,4 @@ class TestApi:
             return is_pass
 
 if __name__ == '__main__':
-    pytest.main(['-s', '-v', 'test_login.py'])
+    pytest.main(['-s', '-v', 'test_run.py'])
